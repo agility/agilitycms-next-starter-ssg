@@ -4,15 +4,16 @@ import agilityConfig from './agility.config'
 
 import GlobalHeader from './components/GlobalHeader'
 
+//Agility API stuff
+const previewAPIKey = agilityConfig.previewAPIKey;
+const guid = agilityConfig.guid;
+const languageCode = agilityConfig.languageCode;
+const channelName = agilityConfig.channelName;
+const isPreview = agilityConfig.isPreview;
+
 
 export async function getAgilityPageProps({ context }) {
   console.log('getAgilityPageProps fired!')
-
-  const previewAPIKey = agilityConfig.previewAPIKey;
-  const guid = agilityConfig.guid;
-  const languageCode = agilityConfig.languageCode;
-  const channelName = agilityConfig.channelName;
-  const isPreview = agilityConfig.isPreview;
 
   const agility = agilityContentFetch.getApi({
     guid: guid,
@@ -50,7 +51,7 @@ export async function getAgilityPageProps({ context }) {
 
   } else {
       //Could not find page
-      console.error('page not found in sitemap')
+      console.error('page [' + path + '] not found in sitemap')
 
       //TODO: Redirect to 404 page
   }
@@ -135,4 +136,27 @@ const asyncForEach = async (array, callback) => {
 	for (let index = 0; index < array.length; index++) {
 		await callback(array[index], index, array);
 	}
+}
+
+export async function getAgilityPaths() {
+    console.log('getAgilityPagePaths fired!');
+
+    const agility = agilityContentFetch.getApi({
+        guid: guid,
+        apiKey: previewAPIKey,
+        isPreview: isPreview
+    });
+
+    const sitemapFlat = await agility.getSitemapFlat({
+        channelName,
+        languageCode
+    })
+
+
+    return Object.keys(sitemapFlat).map(s => {
+        let cleanPath = s.substr(1);
+        return {
+            params: { slug: cleanPath}
+        }
+    })
 }

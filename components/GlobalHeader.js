@@ -21,7 +21,7 @@ class GlobalHeader extends Component {
 
   render() {
     console.log('header rendered');
-    console.log(this.props.sitemap)
+
     return (
       <header className="header">
         <div className="container">
@@ -61,7 +61,7 @@ GlobalHeader.getCustomInitialProps = async function(props) {
 
   try {
     //get the nested sitemap
-    const sitemap = await api.getSitemapNested({
+    let sitemap = await api.getSitemapNested({
       channelName: channelName,
       languageCode: languageCode,
     });
