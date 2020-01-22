@@ -21,6 +21,7 @@ class GlobalHeader extends Component {
 
   render() {
     console.log('header rendered');
+    console.log(this.props.sitemap)
     return (
       <header className="header">
         <div className="container">
@@ -40,7 +41,7 @@ GlobalHeader.getCustomInitialProps = async function(props) {
   const languageCode = props.languageCode;
   const channelName = props.channelName;
   let contentItem = null;
-  let sitemap = [];
+  let topLevelSitemap = [];
 
   try {
     //get the global header
@@ -50,9 +51,8 @@ GlobalHeader.getCustomInitialProps = async function(props) {
     });
 
     if (contentItemList && contentItemList.items) {
-      let contentItem = contentItemList.items[0];
+      contentItem = contentItemList.items[0];
 
-      contentItem = contentItem;
     }
   } catch (error) {
     if (console) console.error("Could not load global header item.", error);
@@ -61,10 +61,17 @@ GlobalHeader.getCustomInitialProps = async function(props) {
 
   try {
     //get the nested sitemap
-    sitemap = await api.getSitemapNested({
+    const sitemap = await api.getSitemapNested({
       channelName: channelName,
       languageCode: languageCode,
     });
+
+    //get rid of the children, we only care about the top-level
+    sitemap = sitemap.forEach(s => {
+      s.children = [];
+      topLevelSitemap.push(s);
+    })
+
 
   } catch (error) {
     if (console) console.error("Could not load nested sitemap.", error);
@@ -72,7 +79,7 @@ GlobalHeader.getCustomInitialProps = async function(props) {
 
   return {
     contentItem,
-    sitemap
+    sitemap: topLevelSitemap
   }
 }
 

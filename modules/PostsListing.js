@@ -71,8 +71,9 @@ PostsListing.getCustomInitialProps = async function(props) {
 
         const dynamicUrls = this.resolvePostUrls(sitemap, contentListResult.items)
 
+        //TODO: should reduce this response to only include fields that are used in direct output
         return {
-            posts: contentListResult.items,
+            posts: contentListResult.items, 
             dynamicUrls: dynamicUrls 
         };
 

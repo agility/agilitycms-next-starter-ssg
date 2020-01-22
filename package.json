@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "export": "next export"
+    "export": "next export",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@agility/content-fetch": "^0.7.1",
@@ -13,6 +16,8 @@
     "next": "9.2.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "truncate-html": "^1.0.3"
+    "truncate-html": "^1.0.3",
+    "@next/bundle-analyzer": "latest",
+    "cross-env": "^5.2.0"
   }
 }

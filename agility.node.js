@@ -72,7 +72,9 @@ export async function getAgilityPageProps({ context }) {
     await asyncForEach(modulesForThisContentZone, async (moduleItem) => {
 
       //find the react component to use for the module
-      const ModuleComponentToRender = agilityConfig.moduleComponents[moduleItem.module];
+      //const ModuleComponentToRender = agilityConfig.moduleComponents[moduleItem.module];
+
+      const ModuleComponentToRender = require('./modules/' + moduleItem.module + '.js').default;
 
       if (ModuleComponentToRender) {
         
@@ -109,13 +111,14 @@ export async function getAgilityPageProps({ context }) {
 
     
     //store as dictionary
-    modulesPerContentZone[zoneName] = modules;
+    page.zones[zoneName] = modules;
 
   })
 
   //resolve data for other shared components
   const globalHeaderProps = await GlobalHeader.getCustomInitialProps({ agility: agility, languageCode: languageCode, channelName: channelName });
 
+  //TODO: should reduce this response to only include fields that are used in direct output
   return {
     props: {
       sitemapNode: pageInSitemap,
@@ -123,8 +126,7 @@ export async function getAgilityPageProps({ context }) {
       pageTemplateName: pageTemplateName,
       globalHeaderProps: globalHeaderProps,
       languageCode: languageCode,
-      channelName: channelName,
-      modulesPerContentZone: modulesPerContentZone
+      channelName: channelName
     }
   }
 }

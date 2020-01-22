@@ -9,7 +9,6 @@ This is sample NextJS starter site that uses Agility CMS and aims to be a founda
 **TODO:**
 - wait until `unstable_getStaticProps` is stable and implement this
 - need to implement static routing paths for proper SSG output of all pages
-- known bug where static site output does currently not include HTML for the page template and modules (it is only outputted as JSON)
 
 # Get Started
 1. Clone this repository

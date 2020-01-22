@@ -1,8 +1,4 @@
-//Our Agility Modules
-import RichTextArea from './modules/RichTextArea'
-import PostsListing from './modules/PostsListing'
-import PostDetails from './modules/PostDetails'
-import Jumbotron from './modules/Jumbotron'
+
 
 export default {
     guid: '046a1a87', //Set your guid here
@@ -13,11 +9,5 @@ export default {
     isPreview: true,
     caching: {
         maxAge: 0
-    },
-    moduleComponents: {
-        RichTextArea,
-        PostsListing,
-        Jumbotron,
-        PostDetails
     }
 }
