@@ -15,6 +15,9 @@ export async function unstable_getStaticProps (context) {
   return await getAgilityPageProps({ context });
 }
 
-
+// AgilityPage.getInitialProps = async function(context) {
+//   let resp = await getAgilityPageProps({ context });
+//   return resp.props;
+// }
 
 export default AgilityPage
