@@ -6,7 +6,7 @@
     "dev": "next",
     "build": "next build",
     "export": "next export",
-    "build:ssg": "next build & next export"
+    "deploy": "next build & next export"
   },
   "dependencies": {
     "@agility/content-fetch": "^0.7.1",
