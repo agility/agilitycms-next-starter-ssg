@@ -1,19 +1,25 @@
-This is sample NextJS starter site that uses Agility CMS and aims to be a foundation for building Static Sites using NextJS and Agility CMS.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e5cab7a6-d9f5-4929-b04a-1486594964d8/deploy-status)](https://app.netlify.com/sites/agility-next-starter-ssg/deploys)
+# Next.js + Agility CMS + SSG 
+This is sample Next.js starter site that uses Agility CMS and aims to be a foundation for building fully static sites using Next.js and Agility CMS.
 
-# Why use NextJS as an SSG (Static Site Generator)
-NextJS traditionaly provides two ways to run your NextJS web app.
+[Live Website Demo (Netlify)](https://agility-next-starter-ssg.netlify.com/)
+
+[New to Agility CMS? Signup for a free account](https://agilitycms.com/free)
+
+# Why use Next.js as an SSG (Static Site Generator)
+Next.js traditionaly provides two ways to run your Next.js web app.
 1. SSR (Server Side Rendering)
 2. Static HTML
 
-As of v9.2, NextJS supports a third alternative - **Static Site Generator**.
+As of v9.2, Next.js supports a third alternative - **Static Site Generator**.
 
 If you are using *Server Side Rendering* (i.e. via `getInitialProps`) then your app runs JavaScript on the server as well as client (also referred to as an isomorphic app). This means you need to run a node.js web server as requests are processed at runtime and rendered. This means you need to manage the performance of your web app and the scaling problems that can come with it. If you want the most performant site possible, this will be challenging.
 
 If you are not using `getInitialProps`, and you don't require any external data on load, then lucky for you, you can deploy this to a static host already (**Static HTML**). Unfortunately, for most sites this is not possible.
 
-Now, with NextJS you can run a cmd `npm run export` which will run through your site and export the SSR pages as static html. This is great, because you can host the output on a static web host, but your code in `getIntitialProps` still runs on the client, so if you have any slow external data resources, they will still be visible to the end user.
+Now, with Next.js you can run a cmd `npm run export` which will run through your site and export the SSR pages as static html. This is great, because you can host the output on a static web host, but your code in `getIntitialProps` still runs on the client, so if you have any slow external data resources, they will still be visible to the end user.
 
-Wouldn't it be great if we could just take an entire snapshot of a website and render it to static html and have any external data that we need just be stored in static JSON files? That is precisely why NextJS has introduced this feature.
+Wouldn't it be great if we could just take an entire snapshot of a website and render it to static html and have any external data that we need just be stored in static JSON files? That is precisely why Next.js has introduced this feature.
 
 For more detailed information around the update, please see [Static Generation/SSG Improvements](https://github.com/zeit/next.js/issues/9524).
 
@@ -25,7 +31,7 @@ For more detailed information around the update, please see [Static Generation/S
 
 # About
 - connected to a sample Agility CMS instance to get content and pages
-- uses the `unstable_getStaticProps` (unstable as of Next v9.2) function from NextJS to allow for full static site generation
+- uses the `unstable_getStaticProps` (unstable as of Next v9.2) function from Next.js to allow for full static site generation
 - supports full page management
 - provides a functional structure that dynamically routes each page based on the request, loads a page template dynamically, and also dynamically loads and renders appropriate Agility CMS modules (as React components)
 
@@ -48,7 +54,7 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 
 # Notes
 ## How to Properly Link to a Page
-Becaue we are using *dynamic pages* in NextJS, you'll need to use the following `<Link>` method to properly provide links to other dynamic pages while still having the client-side router pick them up. There is a current [issue](https://github.com/zeit/next.js/issues/8207) (as of v9.21) open for this for NextJS to handle it better, but for now you'll need to do this:
+Becaue we are using *dynamic pages* in Next.js, you'll need to use the following `<Link>` method to properly provide links to other dynamic pages while still having the client-side router pick them up. There is a current [issue](https://github.com/zeit/next.js/issues/8207) (as of v9.21) open for this for Next.js to handle it better, but for now you'll need to do this:
 ``` javascript
 import Link from 'next/link';
 
