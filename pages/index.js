@@ -1,20 +1,4 @@
-import React, { Component } from 'react';
-import { getAgilityPageProps} from '../agility.node'
-import Layout from '../components/Layout'
+//this is just a pointer to the catch-all route and logic for all CMS driven pages (i.e. even rootpage is dynamic from the CMS)
+export { default, unstable_getStaticProps } from './[...slug]';
 
 
-class AgilityPage extends Component {
-  render() {
-    return (
-      <Layout {...this.props} />
-    )
-  }
-}
-
-export async function unstable_getStaticProps (context) {
-  return await getAgilityPageProps({ context });
-}
-
-
-
-export default AgilityPage

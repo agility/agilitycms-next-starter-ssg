@@ -1,41 +1,21 @@
 import React, { Component } from 'react';
 
 class PostDetails extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            post: null
-        }
-    }
-    async componentDidMount() {
-        const api = this.props.agility.client;
-        try {
-            let post = await api.getContentItem({
-                contentID: this.props.pageInSitemap.contentID,
-                languageCode: this.props.agility.config.languageCode
-            });
-
-            this.setState({ post: post })
-
-        } catch (error) {
-            if (console) console.log(error);
-        }
-    }
     renderPostContent(html) {
         return { __html: html };
     }
     renderPost() {
         let post = null;
 
-        if (this.state.post != null) {
+        if (this.props.customData.post != null) {
 
             post = (
                 <div className="post">
-                    <h1>{this.state.post.fields.title}</h1>
-                    {this.state.post.fields.image &&
-                        <img src={this.state.post.fields.image.url + '?w=860'} alt={this.state.post.fields.image.label} />
+                    <h1>{this.props.customData.post.fields.title}</h1>
+                    {this.props.customData.post.fields.image &&
+                        <img src={this.props.customData.post.fields.image.url + '?w=860'} alt={this.props.customData.post.fields.image.label} />
                     }
-                    <div className="post-content" dangerouslySetInnerHTML={this.renderPostContent(this.state.post.fields.details)}></div>
+                    <div className="post-content" dangerouslySetInnerHTML={this.renderPostContent(this.props.customData.post.fields.details)}></div>
                 </div>);
 
         }
@@ -49,6 +29,26 @@ class PostDetails extends Component {
                 </div>
             </section>
         );
+    }
+}
+
+PostDetails.getCustomInitialProps = async function(props) {
+    console.log('posts getCustomInitialProps fired')
+    const api = props.agility;
+    let post = null;
+    try {
+
+        post = await api.getContentItem({
+            contentID: props.pageInSitemap.contentID,
+            languageCode: props.languageCode
+        });
+
+    } catch (error) {
+        if (console) console.log(error);
+    }
+
+    return {
+        post: post
     }
 }
 

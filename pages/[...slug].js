@@ -22,6 +22,7 @@ export async function unstable_getStaticPaths(context) {
   return resp;
 }
 
+//Enable below for SSR
 // AgilityPage.getInitialProps = async function(context) {
 //   let resp = await getAgilityPageProps({ context });
 //   return resp.props;

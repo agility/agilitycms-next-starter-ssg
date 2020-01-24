@@ -24,9 +24,13 @@ export async function getAgilityPageProps({ context }) {
   //get sitemap
   const sitemap = await agility.getSitemapFlat({channelName, languageCode});
   
-  let path = '/'; // HACK
+  let path = '/'; 
   if(context.params) {
-    path = '/' + context.params.slug;
+    //build path by iterating through slugs
+    path = '';
+    context.params.slug.map(slug => {
+        path += '/' + slug
+    })
   }
   
   
@@ -89,7 +93,8 @@ export async function getAgilityPageProps({ context }) {
             item: moduleItem.item,
             agility: agility,
             languageCode: languageCode,
-            channelName: channelName
+            channelName: channelName,
+            pageInSitemap: pageInSitemap
           });
         } else {
             console.log('No data func for ' + moduleItem.module);
@@ -154,9 +159,7 @@ export async function getAgilityPaths() {
 
 
     return Object.keys(sitemapFlat).map(s => {
-        let cleanPath = s.substr(1);
-        return {
-            params: { slug: cleanPath}
-        }
+        //let cleanPath = s.substr(1);
+        return s; //returns an array of paths as a string (i.e.  ['/home', '/posts'] as opposed to [{ params: { slug: 'home'}}]))
     })
 }
