@@ -31,7 +31,6 @@ For more detailed information around the update, please see [Static Generation/S
 
 # TODO
 - wait until `unstable_getStaticProps` and `unstable_getStaticPaths` is stable, probably next v9.3
-- resolve open known issues
 
 # Get Started
 Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up?product=agility-free) instance.
@@ -45,4 +44,14 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 1. Run `npm run build`
 2. Run `npm run export` to export the site as an SSG
 3. Prior to deploying this to webhost, you can run it locally using `serve -p 8000` to verify the output
-4. Deploy to a static service such as Netlify or Zeit
+4. Deploy to a static hosting service such as Netlify or Zeit
+
+# Notes
+## How to Properly Link to a Page
+Becaue we are using *dynamic pages* in NextJS, you'll need to use the following `<Link>` method to properly provide links to other dynamic pages while still having the client-side router pick them up. There is a current [issue](https://github.com/zeit/next.js/issues/8207) open for this for NextJS to handle it better, but for now you'll need to do this:
+```
+import Link from 'next/link';
+
+//where '[...slug]' is the catch-all dynamic page we have (pages/[...slug].js) and '/posts' is the actual real page path for the page
+<Link href="[...slug]" as="/posts"><a>{item.fields.title}</a></Link>
+```

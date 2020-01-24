@@ -13,7 +13,11 @@ class GlobalHeader extends Component {
 
       let links = [];
       this.props.sitemap.forEach(node => {
-        links.push(<li key={node.pageID}><Link href={node.path}><a>{node.menuText}</a></Link></li>)
+        if(node.path !== '/') {
+          links.push(<li key={node.pageID}><Link href="/[...slug]" as={node.path}><a>{node.menuText}</a></Link></li>)
+        } else {
+          links.push(<li key={node.pageID}><Link href={node.path}><a>{node.menuText}</a></Link></li>)
+        }
       })
       return links;
     }
@@ -68,6 +72,9 @@ GlobalHeader.getCustomInitialProps = async function(props) {
 
     //get rid of the children, we only care about the top-level
     sitemap = sitemap.forEach(s => {
+      if(s.path == '/home') {
+        s.path = '/'
+      }
       s.children = [];
       topLevelSitemap.push(s);
     })

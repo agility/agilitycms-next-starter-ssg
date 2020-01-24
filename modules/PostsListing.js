@@ -17,7 +17,7 @@ class PostsListing extends Component {
                             <img src={item.fields.image.url + '?w=860'} alt={item.fields.image.label} />
                         }
                         <h2>
-                            <Link href={this.props.customData.dynamicUrls[item.contentID]}><a>{item.fields.title}</a></Link>
+                            <Link href="[...slug]" as={this.props.customData.dynamicUrls[item.contentID]}><a>{item.fields.title}</a></Link>
                         </h2>
                         <p dangerouslySetInnerHTML={this.renderPostExcerpt(item.fields.details)}></p>
                     </div>

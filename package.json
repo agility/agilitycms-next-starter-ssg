@@ -6,9 +6,7 @@
     "dev": "next",
     "build": "next build",
     "export": "next export",
-    "analyze": "cross-env ANALYZE=true next build",
-    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+    "deploy": "next build & next export"
   },
   "dependencies": {
     "@agility/content-fetch": "^0.7.1",
@@ -16,8 +14,6 @@
     "next": "9.2.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "truncate-html": "^1.0.3",
-    "@next/bundle-analyzer": "latest",
-    "cross-env": "^5.2.0"
+    "truncate-html": "^1.0.3"
   }
 }
