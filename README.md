@@ -54,7 +54,7 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 
 # Notes
 ## How to Properly Link to a Page
-Becaue we are using *dynamic pages* in Next.js, you'll need to use the following `<Link>` method to properly provide links to other dynamic pages while still having the client-side router pick them up. There is a current [issue](https://github.com/zeit/next.js/issues/8207) (as of v9.21) open for this for Next.js to handle it better, but for now you'll need to do this:
+Because we are using *dynamic pages* along with a catch-all route in Next.js, you'll need to use the following `<Link>` method to properly provide links to other dynamic pages while still having the client-side router pick them up. There is a current [issue](https://github.com/zeit/next.js/issues/8207) (as of v9.21) open for this for Next.js to handle it better, but for now you'll need to do this:
 ``` javascript
 import Link from 'next/link';
 
