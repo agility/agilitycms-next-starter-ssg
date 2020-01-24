@@ -30,8 +30,8 @@ For more detailed information around the update, please see [Static Generation/S
 - provides a functional structure that dynamically routes each page based on the request, loads a page template dynamically, and also dynamically loads and renders appropriate Agility CMS modules (as React components)
 
 # TODO
-- wait until `unstable_getStaticProps` is stable, probably next v9.3
-- need to implement static routing paths for proper SSG output of all pages (https://github.com/agility/agilitycms-next-starter-ssg/issues/1)
+- wait until `unstable_getStaticProps` and `unstable_getStaticPaths` is stable, probably next v9.3
+- resolve open known issues
 
 # Get Started
 Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up?product=agility-free) instance.
