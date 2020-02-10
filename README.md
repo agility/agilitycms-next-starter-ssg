@@ -62,3 +62,34 @@ import Link from 'next/link';
 // and '/posts' is the actual real page path for the page
 <Link href="[...slug]" as="/posts"><a>{item.fields.title}</a></Link>
 ```
+
+## How to Preview Content?
+Since this is a static app, how can editors preview content in realtime as they are making them in the CMS? Zeit Now apparantly will support a great way to do this, but until then, you can run this in development mode (`npm run dev`) in a container on a web server. This ensures that the requests for each page are done at runtime.
+
+This repo is set up work with Azure Dev Ops (_azure-pipelines.yml_) and Docker (_DockerFile). This allows you to use Docker to build an image, and then push it to the Azure Container Registry of your choice. An Azure App Service that you setup would simply use the Registry to enable Continuous Deployment.
+
+### Using Docker and Azure
+
+1. Create an Azure Container Registry
+
+2. Login to Azure Container Registry
+```
+az acr login --name {azureContainerRegistryFQDN}
+```
+
+3. Build the docker image locally
+```
+docker image build -t {azureContainerRegistryFQDN}/{nameOfImage} .   
+```
+
+4. Push the docker image
+```
+docker push {azureContainerRegistryFQDN}/{nameOfImage}
+```
+
+5. Create an Azure App Service Plan and Web App (Linux, using Docker Container)
+
+6. Ensure you have Continuous Deployment turned on - this will ensure pushes to your Azure Container Registry with the tag 'latest' will get pushed to your Azure App Service web app and deployed automatically.
+
+
+
