@@ -71,20 +71,23 @@ This repo is set up work with Azure Dev Ops (_azure-pipelines.yml_) and Docker (
 ### Using Docker and Azure
 
 1. Create an Azure Container Registry
+```
+az acr create --resource-group myResourceGroup --name <azureContainerRegistry> --sku Basic
+```
 
 2. Login to Azure Container Registry
 ```
-az acr login --name {azureContainerRegistryFQDN}
+az acr login --name <azureContainerRegistryFQDN>
 ```
 
 3. Build the docker image locally
 ```
-docker image build -t {azureContainerRegistryFQDN}/{nameOfImage} .   
+docker image build -t <azureContainerRegistryFQDN>/<nameOfImage> .   
 ```
 
 4. Push the docker image
 ```
-docker push {azureContainerRegistryFQDN}/{nameOfImage}
+docker push <azureContainerRegistryFQDN>/<nameOfImage>
 ```
 
 5. Create an Azure App Service Plan and Web App (Linux, using Docker Container)
