@@ -22,8 +22,8 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'Cineplex Digital Media Azure Container Registry'
-        repository: 'cdm-preview'
+        containerRegistry: '$(containerRegistry)'
+        repository: '$(containerRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
