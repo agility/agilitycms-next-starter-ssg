@@ -76,8 +76,15 @@ az acr create --resource-group myResourceGroup --name <azureContainerRegistry> -
 ```
 
 2. Login to Azure Container Registry
+
+If you are a user:
 ```
 az acr login --name <azureContainerRegistryFQDN>
+```
+
+If you need to authenticate using an Azure Service Principal
+```
+docker login --name <azureContainerRegistryFQDN>/<nameOfImage>  -u <s_AppId> -p <s_Password>
 ```
 
 3. Build the docker image locally
