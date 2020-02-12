@@ -27,3 +27,21 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
+    - task: Npm@1
+      inputs:
+        command: 'install'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'build'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        workingDir: 'export'
+    - task: AzureFileCopy@3
+      inputs:
+        SourcePath: '/out'
+        azureSubscription: '$(azureSubscription)'
+        Destination: 'AzureBlob'
+        storage: '$(storageAccount)'
+        ContainerName: '$web'
