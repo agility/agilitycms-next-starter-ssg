@@ -33,15 +33,15 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        customCommand: 'build'
+        customCommand: 'run build'
     - task: Npm@1
       inputs:
         command: 'custom'
-        workingDir: 'export'
-    - task: AzureFileCopy@3
+        customCommand: 'run export'
+    - task: AzureCLI@2
       inputs:
-        SourcePath: '/out'
         azureSubscription: '$(azureSubscription)'
-        Destination: 'AzureBlob'
-        storage: '$(storageAccount)'
-        ContainerName: '$web'
+        scriptType: 'bash'
+        scriptLocation: 'scriptPath'
+        scriptPath: 'az.storage.blob.upload-batch.sh'
+        workingDirectory: '$(resourceGroup) $(storageAccount) $(uploadDir)'
