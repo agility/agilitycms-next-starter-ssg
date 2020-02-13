@@ -33,11 +33,11 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        customCommand: 'build'
+        customCommand: 'run build'
     - task: Npm@1
       inputs:
         command: 'custom'
-        workingDir: 'export'
+        workingDir: 'run export'
     - task: AzureFileCopy@3
       inputs:
         SourcePath: '/out'
