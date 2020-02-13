@@ -101,6 +101,8 @@ docker push <azureContainerRegistryFQDN>/<nameOfImage>
 
 6. Ensure you have Continuous Deployment turned on - this will ensure pushes to your Azure Container Registry with the tag 'latest' will get pushed to your Azure App Service web app and deployed automatically.
 
+| TODO: add link
+
 #### Streaming Logs from Azure App Service Container
 If you are logged in to `az`:
 ```
