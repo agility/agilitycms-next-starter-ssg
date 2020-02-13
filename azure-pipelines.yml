@@ -44,4 +44,4 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'scriptPath'
         scriptPath: 'az.storage.blob.upload-batch.sh'
-        workingDirectory: '$(resourceGroup) $(storageAccount) $(uploadDir)'
+        scriptArguments: '$(resourceGroup) $(storageAccount) $(uploadDir)'
