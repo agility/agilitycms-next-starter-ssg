@@ -22,8 +22,26 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'Cineplex Digital Media Azure Container Registry'
-        repository: 'cdm-preview'
+        containerRegistry: '$(containerRegistry)'
+        repository: '$(containerRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
+    - task: Npm@1
+      inputs:
+        command: 'install'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'build'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        workingDir: 'export'
+    - task: AzureFileCopy@3
+      inputs:
+        SourcePath: '/out'
+        azureSubscription: '$(azureSubscription)'
+        Destination: 'AzureBlob'
+        storage: '$(storageAccount)'
+        ContainerName: '$web'
