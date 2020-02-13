@@ -37,7 +37,7 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        workingDir: 'run export'
+        customCommand: 'run export'
     - task: AzureFileCopy@3
       inputs:
         SourcePath: '/out'
