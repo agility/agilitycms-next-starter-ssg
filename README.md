@@ -99,6 +99,8 @@ docker push <azureContainerRegistryFQDN>/<nameOfImage>
 
 5. Create an Azure App Service Plan and Web App (Linux, using Docker Container)
 
+| TODO: provide cli instructions
+
 6. Ensure you have Continuous Deployment turned on - this will ensure pushes to your Azure Container Registry with the tag 'latest' will get pushed to your Azure App Service web app and deployed automatically.
 
 | TODO: add link
