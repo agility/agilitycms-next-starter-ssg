@@ -38,10 +38,10 @@ stages:
       inputs:
         command: 'custom'
         customCommand: 'run export'
-    - task: AzureFileCopy@3
+    - task: AzureCLI@2
       inputs:
-        SourcePath: '/out'
         azureSubscription: '$(azureSubscription)'
-        Destination: 'AzureBlob'
-        storage: '$(storageAccount)'
-        ContainerName: '$web'
+        scriptType: 'bash'
+        scriptLocation: 'scriptPath'
+        scriptPath: 'az.storage.blob.upload-batch.sh'
+        workingDirectory: '$(resourceGroup) $(storageAccount) $(uploadDir)'
