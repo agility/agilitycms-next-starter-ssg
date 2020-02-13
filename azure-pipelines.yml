@@ -21,6 +21,7 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
+      displayName: 'Build and Push Preview Env'
       inputs:
         containerRegistry: '$(containerRegistry)'
         repository: '$(containerRepository)'
@@ -39,9 +40,21 @@ stages:
         command: 'custom'
         customCommand: 'run export'
     - task: AzureCLI@2
+      displayName: 'Deploy to UAT Blob $web Container'
       inputs:
         azureSubscription: '$(azureSubscription)'
         scriptType: 'bash'
         scriptLocation: 'scriptPath'
         scriptPath: 'az.storage.blob.upload-batch.sh'
-        scriptArguments: '$(resourceGroup) $(storageAccount) $(uploadDir)'
+        scriptArguments: '$(resourceGroup) $(storageAccountUAT) $(uploadDir)'
+        failOnStandardError: true
+    - task: AzureCLI@2
+      displayName: 'Deploy to Prod Blob $web Container'
+      inputs:
+        azureSubscription: '$(azureSubscription)'
+        scriptType: 'bash'
+        scriptLocation: 'scriptPath'
+        scriptPath: 'az.storage.blob.upload-batch.sh'
+        scriptArguments: '$(resourceGroup) $(storageAccountProd) $(uploadDir)'
+        failOnStandardError: true
+    
