@@ -4,7 +4,7 @@
 client_id=$1
 client_secret=$2
 
-sudo apt-get install jq
+sudo apt-get --assume-yes install jq
 
 
 
