@@ -5,7 +5,6 @@ resourceGroup=$1
 storageAccount=$2
 sourceDir=$3
 
-
 echo "Retrieving storage account key..."
 storageAccountKey=$(az storage account keys list -g $resourceGroup -n $storageAccount --query [0].value -o tsv)
 
