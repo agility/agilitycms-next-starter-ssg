@@ -29,13 +29,16 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
     - task: Npm@1
+      displayName: 'npm install'
       inputs:
         command: 'install'
     - task: Npm@1
+      displayName: 'npm run build'
       inputs:
         command: 'custom'
         customCommand: 'run build'
     - task: Npm@1
+      displayName: 'npm run export (next.js SSG)'
       inputs:
         command: 'custom'
         customCommand: 'run export'
