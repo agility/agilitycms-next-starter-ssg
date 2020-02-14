@@ -17,7 +17,7 @@ access_token=$(curl --location --request POST 'https://gateway.stackpath.com/ide
 echo "Temporary access_token is: $access_token ..."
 
 echo "Purging CDN for $cdn_url ..."
-curl --location --request POST "https://gateway.stackpath.com/cdn/v1/stacks/$stack_id/purge" \
+echo curl --location --request POST "https://gateway.stackpath.com/cdn/v1/stacks/$stack_id/purge" \
 --header "Authorization: bearer $access_token" \
 --header "Content-Type: application/json" \
 --data-raw '{ 
