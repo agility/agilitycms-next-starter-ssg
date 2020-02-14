@@ -59,10 +59,10 @@ stages:
       displayName: 'Purge Cache on UAT'
       inputs:
         filePath: 'az.stackpath.purge-cdn.sh'
-        arguments: '$(cdnClientID) $(cdnClientSecret) $(stackID) $(cdnUrlUAT)'
+        arguments: '$(cdnClientID) $(cdnClientSecret) $(cdnStackID) $(cdnUrlUAT)'
     - task: Bash@3
       displayName: 'Purge Cache on Prod'
       inputs:
         filePath: 'az.stackpath.purge-cdn.sh'
-        arguments: '$(cdnClientID) $(cdnClientSecret) $(stackID) $(cdnUrlProd)'
+        arguments: '$(cdnClientID) $(cdnClientSecret) $(cdnStackID) $(cdnUrlProd)'
     
