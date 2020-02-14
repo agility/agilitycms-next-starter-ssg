@@ -14,10 +14,8 @@ access_token=$(curl --location --request POST 'https://gateway.stackpath.com/ide
 --header 'Content-Type: application/json' \
 --data-raw '{"grant_type":"client_credentials","client_id":"'$client_id'","client_secret":"'$client_secret'"}' | jq --raw-output .access_token)
 
-echo "Temporary access_token is: $access_token ..."
-
 echo "Purging CDN for $cdn_url ..."
-echo curl --location --request POST "https://gateway.stackpath.com/cdn/v1/stacks/$stack_id/purge" \
+curl --location --request POST "https://gateway.stackpath.com/cdn/v1/stacks/$stack_id/purge" \
 --header "Authorization: bearer $access_token" \
 --header "Content-Type: application/json" \
 --data-raw '{ 
