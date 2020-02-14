@@ -47,7 +47,6 @@ stages:
         scriptLocation: 'scriptPath'
         scriptPath: 'az.storage.blob.upload-batch.sh'
         scriptArguments: '$(resourceGroup) $(storageAccountUAT) $(uploadDir)'
-        failOnStandardError: true
     - task: AzureCLI@2
       displayName: 'Deploy to Prod Blob $web Container'
       inputs:
@@ -56,5 +55,9 @@ stages:
         scriptLocation: 'scriptPath'
         scriptPath: 'az.storage.blob.upload-batch.sh'
         scriptArguments: '$(resourceGroup) $(storageAccountProd) $(uploadDir)'
-        failOnStandardError: true
+    - task: Bash@3
+      displayName: 'Purge Cache'
+      inputs:
+        filePath: 'az.stackpath.purge-cdn.sh'
+        arguments: '$(cdnClientID) $(cdnClientSecret)'
     
