@@ -56,8 +56,13 @@ stages:
         scriptPath: 'az.storage.blob.upload-batch.sh'
         scriptArguments: '$(resourceGroup) $(storageAccountProd) $(uploadDir)'
     - task: Bash@3
-      displayName: 'Purge Cache'
+      displayName: 'Purge Cache on UAT'
       inputs:
         filePath: 'az.stackpath.purge-cdn.sh'
-        arguments: '$(cdnClientID) $(cdnClientSecret)'
+        arguments: '$(cdnClientID) $(cdnClientSecret) $(stackID) $(cdnUrlUAT)'
+    - task: Bash@3
+      displayName: 'Purge Cache on Prod'
+      inputs:
+        filePath: 'az.stackpath.purge-cdn.sh'
+        arguments: '$(cdnClientID) $(cdnClientSecret) $(stackID) $(cdnUrlProd)'
     
