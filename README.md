@@ -106,10 +106,26 @@ docker push <azureContainerRegistryFQDN>/<nameOfImage>
 | TODO: add link
 
 #### Streaming Logs from Azure App Service Container
-If you are logged in to `az`:
-```
-az webapp log tail --resource-group {yourResourceGroup} --name {yourAppServiceWebAppName}
-```
+You can stream logs from the Azure App Service that is running your container using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 
+1. Login to **Azure CLI** using your personal *Azure Account*:
+  ```
+  az login
+  ```
+  Or, use a *Service Principal* to login:
+  ```
+  az login --service-principal --username <APP_ID> --password <PASSWORD> --tenant <TENANT_ID>
+  ```
+  
+2. Select your **Azure Subscription**
+  ```
+  az account set --subscription <SUBSCRIPTIONNAME>
+  ```
+  
+3. Stream Web Logs:
+  ```
+  az webapp log tail --resource-group <RESOURCEGROUP> --name <APPSERVICENAME>
+  ```
+  
 
 
