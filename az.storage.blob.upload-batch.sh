@@ -12,6 +12,9 @@ echo "Setting storage context..."
 export AZURE_STORAGE_ACCOUNT=$storageAccount
 export AZURE_STORAGE_KEY=$storageAccountKey
 
+echo "Deleting existing files in web directory in $storageAccount"
+az storage blob delete-batch --source $web
+
 echo "Uploading /$sourceDir directory to $storageAccount static website container..."
 az storage blob upload-batch -d '$web' -s $sourceDir
 
