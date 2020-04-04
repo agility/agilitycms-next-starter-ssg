@@ -1,4 +1,4 @@
-
+import PreviewBar from './PreviewBar'
 import GlobalHeader from './GlobalHeader'
 
 export default function Layout(props) {
@@ -12,6 +12,7 @@ export default function Layout(props) {
     <div>
 
       <div className="App">
+        <PreviewBar isPreview={props.isPreview} />
         <GlobalHeader {...props.globalHeaderProps}/>
 
         <main className="main">
@@ -22,3 +23,4 @@ export default function Layout(props) {
     </div>
   )
 }
+

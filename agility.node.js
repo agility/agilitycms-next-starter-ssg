@@ -1,19 +1,28 @@
-import dynamic from 'next/dynamic'
+import crypto from 'crypto'
 import agilityContentFetch from '@agility/content-fetch'
 import agilityConfig from './agility.config'
-
 import GlobalHeader from './components/GlobalHeader'
+
 
 //Agility API stuff
 const previewAPIKey = agilityConfig.previewAPIKey;
+const fetchAPIKey = agilityConfig.fetchAPIKey;
 const guid = agilityConfig.guid;
 const languageCode = agilityConfig.languageCode;
 const channelName = agilityConfig.channelName;
-const isPreview = agilityConfig.isPreview;
+const securityKey = agilityConfig.securityKey;
 
 
 export async function getAgilityPageProps({ context }) {
-  
+ 
+  //determine if we are in preview mode
+  let apiKey = fetchAPIKey;
+  const isPreview = (context.preview ? true : false);
+
+  if(isPreview) {
+    apiKey = previewAPIKey
+  }
+
   let path = '/'; 
   if(context.params) {
     //build path by iterating through slugs
@@ -27,7 +36,7 @@ export async function getAgilityPageProps({ context }) {
 
   const agility = agilityContentFetch.getApi({
     guid: guid,
-    apiKey: previewAPIKey,
+    apiKey: apiKey,
     isPreview: isPreview
   });
   
@@ -124,7 +133,8 @@ export async function getAgilityPageProps({ context }) {
       pageTemplateName: pageTemplateName,
       globalHeaderProps: globalHeaderProps,
       languageCode: languageCode,
-      channelName: channelName
+      channelName: channelName,
+      isPreview: (context.preview ? true : false)
   }
 }
 
@@ -134,12 +144,21 @@ const asyncForEach = async (array, callback) => {
 	}
 }
 
+
 export async function getAgilityPaths() {
     console.log(`Agility CMS => Fetching sitemap for getAgilityPaths...`);
 
+    //determine if we are in preview mode
+    const apiKey = fetchAPIKey;
+    const isPreview = (false ? true : false);
+
+    if(isPreview) {
+      apiKey = previewAPIKey
+    }
+
     const agility = agilityContentFetch.getApi({
         guid: guid,
-        apiKey: previewAPIKey,
+        apiKey: apiKey,
         isPreview: isPreview
     });
 
@@ -153,4 +172,87 @@ export async function getAgilityPaths() {
         //returns an array of paths as a string (i.e.  ['/home', '/posts'] as opposed to [{ params: { slug: 'home'}}]))
         return s; 
     })
+}
+
+
+
+export async function validatePreview({ agilityPreviewKey, slug }) {
+  //Validate the preview key
+  if(!agilityPreviewKey) {
+    return {
+      error: true,
+      message: `Missing agilitypreviewkey.`
+    }
+  }
+
+  //compare the preview key being used
+  const correctPreviewKey = generatePreviewKey();
+
+  if(agilityPreviewKey !== correctPreviewKey) {
+    return {
+      error: true,
+      message: `Invalid agilitypreviewkey.`
+    }
+  }
+
+  const validateSlugResponse = await validateSlugForPreview({ slug });
+  
+  if(validateSlugResponse.error) {
+    //kickout
+    return validateSlugResponse;
+  }
+
+  //return success
+  return {
+    error: false,
+    message: null
+  }
+
+}
+
+export async function validateSlugForPreview({ slug }) {
+  //Check that the requested page exists, if not return a 401
+  const agility = agilityContentFetch.getApi({
+    guid: guid,
+    apiKey: fetchAPIKey,
+  });
+
+  const sitemapFlat = await agility.getSitemapFlat({
+      channelName,
+      languageCode
+  })
+
+  const pageInSitemap = sitemapFlat[slug];
+
+  if(!pageInSitemap && slug !== `/`) {
+    return {
+      error: true,
+      message: `Invalid page. '${slug}' was not found in the sitemap.`
+    }
+  }
+
+  return {
+    error: false,
+    message: null
+  }
+}
+
+export function generatePreviewKey() {
+  //the string we want to encode
+  const str = `-1_${securityKey}_Preview`;
+
+  //build our byte array
+  let data = [];
+  for (var i = 0; i < str.length; ++i)
+  {
+      data.push(str.charCodeAt(i));
+      data.push(0);
+  }
+  
+  //convert byte array to buffer
+  const strBuffer = Buffer.from(data);
+
+  //encode it!
+  const previewKey = crypto.createHash('sha512').update(strBuffer).digest('base64');
+  return previewKey;
 }

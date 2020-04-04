@@ -1,13 +1,10 @@
-
+require('dotenv').config()
 
 export default {
-    guid: 'febce15e', //Set your guid here
-    fetchAPIKey: 'defaultlive.fd9bce98fea53d7620a3a212531cc47efbfa228633970cd3a6dbc276b72cb906', //Set your fetch apikey here
-    previewAPIKey: 'defaultpreview.886caa1bb6cc963d616a04f7099abd481ad65fb365fda9a07b18be3fe28d5d92', //set your preview apikey
-    languageCode: 'en-us',
-    channelName: 'website',
-    isPreview: true,
-    caching: {
-        maxAge: 0
-    }
+    guid: process.env.AGILITY_GUID, //Set your guid here
+    fetchAPIKey: process.env.AGILITY_API_FETCH_KEY, //Set your fetch apikey here
+    previewAPIKey: process.env.AGILITY_API_PREVIEW_KEY, //set your preview apikey
+    languageCode: 'en-us', //the language for your website in Agility CMS
+    channelName: 'website', //the name of your channel in Agility CMS
+    securityKey: process.env.AGILITY_SECURITY_KEY //the website security key used to validate and generate preview keys
 }
