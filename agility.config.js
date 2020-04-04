@@ -1,9 +1,9 @@
 
 
 export default {
-    guid: '046a1a87', //Set your guid here
-    fetchAPIKey: 'defaultlive.2b7f3a91559d794bedb688358be5e13af2b1e3ae8cd39e8ed2433bbef5d8d6ac', //Set your fetch apikey here
-    previewAPIKey: 'defaultpreview.6a6384fa058884481e1cb08e2b5f6476b6e3b64741b2763b4215056120b9cc07', //set your preview apikey
+    guid: 'febce15e', //Set your guid here
+    fetchAPIKey: 'defaultlive.fd9bce98fea53d7620a3a212531cc47efbfa228633970cd3a6dbc276b72cb906', //Set your fetch apikey here
+    previewAPIKey: 'defaultpreview.886caa1bb6cc963d616a04f7099abd481ad65fb365fda9a07b18be3fe28d5d92', //set your preview apikey
     languageCode: 'en-us',
     channelName: 'website',
     isPreview: true,

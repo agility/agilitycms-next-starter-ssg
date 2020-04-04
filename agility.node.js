@@ -13,7 +13,17 @@ const isPreview = agilityConfig.isPreview;
 
 
 export async function getAgilityPageProps({ context }) {
-  console.log('getAgilityPageProps fired!')
+  
+  let path = '/'; 
+  if(context.params) {
+    //build path by iterating through slugs
+    path = '';
+    context.params.slug.map(slug => {
+        path += '/' + slug
+    })
+  }
+
+  console.log(`Agility CMS => Getting page props for '${path}'...`);
 
   const agility = agilityContentFetch.getApi({
     guid: guid,
@@ -24,27 +34,14 @@ export async function getAgilityPageProps({ context }) {
   //get sitemap
   const sitemap = await agility.getSitemapFlat({channelName, languageCode});
   
-  let path = '/'; 
-  if(context.params) {
-    //build path by iterating through slugs
-    path = '';
-    context.params.slug.map(slug => {
-        path += '/' + slug
-    })
-  }
-  
-  
   let pageInSitemap = sitemap[path];
   let page = null;
  
-  //console.log(path);
 
   if (path === '/') {
       let firstPagePathInSitemap = Object.keys(sitemap)[0];
       pageInSitemap = sitemap[firstPagePathInSitemap];
   } 
-
-  //console.log(pageInSitemap);
 
   if (pageInSitemap) {
     //get the page
@@ -77,8 +74,6 @@ export async function getAgilityPageProps({ context }) {
     await asyncForEach(modulesForThisContentZone, async (moduleItem) => {
 
       //find the react component to use for the module
-      //const ModuleComponentToRender = agilityConfig.moduleComponents[moduleItem.module];
-
       const ModuleComponentToRender = require('./modules/' + moduleItem.module + '.js').default;
 
       if (ModuleComponentToRender) {
@@ -88,7 +83,7 @@ export async function getAgilityPageProps({ context }) {
 
         if(ModuleComponentToRender.getCustomInitialProps) {
           //we have some additional data in the module we'll need, execute that method now, so it can be included in SSG
-          console.log('Fetching additional data for ' + moduleItem.module);
+          console.log(`Agility CMS => Fetching additional data via getCustomInitialProps for ${moduleItem.module}...`);
           moduleData = await ModuleComponentToRender.getCustomInitialProps({ 
             item: moduleItem.item,
             agility: agility,
@@ -96,9 +91,7 @@ export async function getAgilityPageProps({ context }) {
             channelName: channelName,
             pageInSitemap: pageInSitemap
           });
-        } else {
-            console.log('No data func for ' + moduleItem.module);
-        }     
+        }      
         
         //if we have additional module data, then add it to the module props using 'customData'
         if(moduleData != null) {
@@ -126,14 +119,12 @@ export async function getAgilityPageProps({ context }) {
 
   //TODO: should reduce this response to only include fields that are used in direct output
   return {
-    props: {
       sitemapNode: pageInSitemap,
       page: page,
       pageTemplateName: pageTemplateName,
       globalHeaderProps: globalHeaderProps,
       languageCode: languageCode,
       channelName: channelName
-    }
   }
 }
 
@@ -144,7 +135,7 @@ const asyncForEach = async (array, callback) => {
 }
 
 export async function getAgilityPaths() {
-    console.log('getAgilityPagePaths fired!');
+    console.log(`Agility CMS => Fetching sitemap for getAgilityPaths...`);
 
     const agility = agilityContentFetch.getApi({
         guid: guid,
@@ -159,7 +150,7 @@ export async function getAgilityPaths() {
 
 
     return Object.keys(sitemapFlat).map(s => {
-        //let cleanPath = s.substr(1);
-        return s; //returns an array of paths as a string (i.e.  ['/home', '/posts'] as opposed to [{ params: { slug: 'home'}}]))
+        //returns an array of paths as a string (i.e.  ['/home', '/posts'] as opposed to [{ params: { slug: 'home'}}]))
+        return s; 
     })
 }

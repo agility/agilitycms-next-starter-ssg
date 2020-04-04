@@ -4,22 +4,26 @@ import Layout from '../components/Layout'
 
 
 class AgilityPage extends Component {
-  render() {
+  render() {    
     return (
       <Layout {...this.props} />
     )
   }
 }
 
-export async function unstable_getStaticProps (context) {
-  console.log('getStaticProps context', context);
-  return await getAgilityPageProps({ context });
+export async function getStaticProps (context) {
+  const props = await getAgilityPageProps({ context });
+  return {
+    props: props
+  }
 }
 
-export async function unstable_getStaticPaths(context) {  
-  const resp =  await getAgilityPaths();
-  console.log('getStaticPaths response', resp);
-  return resp;
+export async function getStaticPaths(context) {  
+  const paths =  await getAgilityPaths();
+  return {
+    paths: paths,
+    fallback: false
+  }
 }
 
 //Enable below for SSR

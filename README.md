@@ -31,12 +31,9 @@ For more detailed information around the update, please see [Static Generation/S
 
 # About
 - connected to a sample Agility CMS instance to get content and pages
-- uses the `unstable_getStaticProps` (unstable as of Next v9.2) function from Next.js to allow for full static site generation
+- uses the `getStaticProps` function from Next.js to allow for full static site generation
 - supports full page management
 - provides a functional structure that dynamically routes each page based on the request, loads a page template dynamically, and also dynamically loads and renders appropriate Agility CMS modules (as React components)
-
-# TODO
-- wait until `unstable_getStaticProps` and `unstable_getStaticPaths` is stable, probably next v9.3
 
 # Get Started
 Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up?product=agility-free) instance.

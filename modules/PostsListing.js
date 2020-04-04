@@ -53,7 +53,6 @@ PostsListing.resolvePostUrls = function (sitemap, posts) {
 }
 
 PostsListing.getCustomInitialProps = async function(props) {
-    console.log('posts getCustomInitialProps fired')
     const api = props.agility;
     try {
 

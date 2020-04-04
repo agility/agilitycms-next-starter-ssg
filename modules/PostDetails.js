@@ -33,7 +33,6 @@ class PostDetails extends Component {
 }
 
 PostDetails.getCustomInitialProps = async function(props) {
-    console.log('posts getCustomInitialProps fired')
     const api = props.agility;
     let post = null;
     try {

@@ -24,8 +24,6 @@ class GlobalHeader extends Component {
   }
 
   render() {
-    console.log('header rendered');
-
     return (
       <header className="header">
         <div className="container">
