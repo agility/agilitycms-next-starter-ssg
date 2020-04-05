@@ -185,6 +185,11 @@ export async function validatePreview({ agilityPreviewKey, slug }) {
     }
   }
 
+  //sanitize incoming key (replace spaces with '+')
+  if(agilityPreviewKey.indexOf(` `) > -1) {
+    agilityPreviewKey = agilityPreviewKey.split(` `).join(`+`);
+  }
+
   //compare the preview key being used
   const correctPreviewKey = generatePreviewKey();
 
@@ -192,6 +197,7 @@ export async function validatePreview({ agilityPreviewKey, slug }) {
     return {
       error: true,
       message: `Invalid agilitypreviewkey.`
+      //message: `Invalid agilitypreviewkey. Incoming key is=${agilityPreviewKey} compared to=${correctPreviewKey}...`
     }
   }
 

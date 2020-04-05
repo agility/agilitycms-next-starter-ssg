@@ -12,7 +12,7 @@ export default async (req, res) => {
      });
     
      if(validationResp.error) {
-         return res.status(401).end(validationResp.message)
+         return res.status(401).end(`${validationResp.message}`)
      }
 
 
