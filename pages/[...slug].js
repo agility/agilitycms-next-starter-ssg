@@ -21,11 +21,11 @@ export async function getStaticProps (context) {
   }
 }
 
-export async function getStaticPaths(context) {  
+export async function getStaticPaths() {  
   const paths = await getAgilityPaths();
   return {
     paths: paths,
-    fallback: false
+    fallback: true
   }
 }
 

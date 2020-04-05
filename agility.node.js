@@ -150,7 +150,7 @@ export async function getAgilityPaths() {
 
     //determine if we are in preview mode
     const apiKey = fetchAPIKey;
-    const isPreview = (false ? true : false);
+    const isPreview = false;
 
     if(isPreview) {
       apiKey = previewAPIKey
