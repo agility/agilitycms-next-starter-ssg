@@ -222,7 +222,8 @@ export async function validateSlugForPreview({ slug }) {
   //Check that the requested page exists, if not return a 401
   const agility = agilityContentFetch.getApi({
     guid: guid,
-    apiKey: fetchAPIKey,
+    apiKey: previewAPIKey,
+    isPreview: true
   });
 
   const sitemapFlat = await agility.getSitemapFlat({
