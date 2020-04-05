@@ -25,7 +25,7 @@ export async function getStaticPaths(context) {
   const paths = await getAgilityPaths();
   return {
     paths: paths,
-    fallback: true
+    fallback: false
   }
 }
 
