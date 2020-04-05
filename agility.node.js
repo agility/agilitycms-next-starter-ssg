@@ -54,16 +54,20 @@ export async function getAgilityPageProps({ context }) {
 
   if (pageInSitemap) {
     //get the page
-   page = await agility.getPage({
-        pageID: pageInSitemap.pageID,
-        languageCode: languageCode
-    });
+    page = await agility.getPage({
+          pageID: pageInSitemap.pageID,
+          languageCode: languageCode
+      });
 
   } else {
       //Could not find page
-      console.error('page [' + path + '] not found in sitemap')
+      console.error('page [' + path + '] not found in sitemap.')
 
       //TODO: Redirect to 404 page
+  }
+
+  if(!page) {
+    console.error('page [' + path + '] not found in getpage method.')
   }
 
 
@@ -71,7 +75,6 @@ export async function getAgilityPageProps({ context }) {
   const pageTemplateName = page.templateName.replace(/[^0-9a-zA-Z]/g, '');
 
   //resolve the modules per content zone
-  let modulesPerContentZone = {};
   await asyncForEach(Object.keys(page.zones), async (zoneName) => {
 
     let modules = [];
@@ -166,7 +169,6 @@ export async function getAgilityPaths() {
         channelName,
         languageCode
     })
-
 
     return Object.keys(sitemapFlat).map(s => {
         //returns an array of paths as a string (i.e.  ['/home', '/posts'] as opposed to [{ params: { slug: 'home'}}]))
