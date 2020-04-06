@@ -1,16 +1,16 @@
 {
     "build": {
       "env": {
-        "AGILITY_GUID": "@zeittest-agility-guid",
-        "AGILITY_API_FETCH_KEY": "@zeittest-agility-api-fetch-key",
-        "AGILITY_API_PREVIEW_KEY": "@zeittest-agility-api-preview-key",
-        "AGILITY_SECURITY_KEY": "@zeittest-agility-security-key"
+        "AGILITY_GUID": "@agility-guid",
+        "AGILITY_API_FETCH_KEY": "@agility-api-fetch-key",
+        "AGILITY_API_PREVIEW_KEY": "@agility-api-preview-key",
+        "AGILITY_SECURITY_KEY": "@agility-security-key"
       }
     },
     "env": {
-        "AGILITY_GUID": "@zeittest-agility-guid",
-        "AGILITY_API_FETCH_KEY": "@zeittest-agility-api-fetch-key",
-        "AGILITY_API_PREVIEW_KEY": "@zeittest-agility-api-preview-key",
-        "AGILITY_SECURITY_KEY": "@zeittest-agility-security-key"
+        "AGILITY_GUID": "@agility-guid",
+        "AGILITY_API_FETCH_KEY": "@agility-api-fetch-key",
+        "AGILITY_API_PREVIEW_KEY": "@agility-api-preview-key",
+        "AGILITY_SECURITY_KEY": "@agility-security-key"
       }
 }
