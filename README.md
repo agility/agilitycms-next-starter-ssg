@@ -12,7 +12,7 @@ Next.js traditionaly provides two ways to run your Next.js web app.
 1. SSR (Server Side Rendering)
 2. Static HTML
 
-As of v9.2, Next.js supports a third alternative - **Static Site Generator**.
+As of v9.3, Next.js supports a third alternative - **Static Site Generator**.
 
 If you are using *Server Side Rendering* (i.e. via `getInitialProps`) then your app runs JavaScript on the server as well as client (also referred to as an isomorphic app). This means you need to run a node.js web server as requests are processed at runtime and rendered. This means you need to manage the performance of your web app and the scaling problems that can come with it. If you want the most performant site possible, this will be challenging.
 
@@ -47,7 +47,7 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 # Deploy
 [![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/agility/agilitycms-next-starter-ssg)
 
-☝️ Deploy this starter repo in just minutes with [Zeit](https://zeit.co/). It will prompt you to enter your `AGILITY_GUID`, , `AGILITY_API_FETCH_KEY`, `AGILITY_API_PREVIEW_KEY`, and `AGILITY_SECURITY_KEY`.
+☝️ Deploy this starter repo in just minutes with [ZEIT](https://zeit.co/). It will prompt you to enter your `AGILITY_GUID`, , `AGILITY_API_FETCH_KEY`, `AGILITY_API_PREVIEW_KEY`, and `AGILITY_SECURITY_KEY`.
 
 # Notes
 ## How to Properly Link to a Page
