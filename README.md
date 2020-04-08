@@ -1,8 +1,7 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e5cab7a6-d9f5-4929-b04a-1486594964d8/deploy-status)](https://app.netlify.com/sites/agility-next-starter-ssg/deploys)
 # Next.js + Agility CMS + SSG 
 This is sample Next.js starter site that uses Agility CMS and aims to be a foundation for building fully static sites using Next.js and Agility CMS.
 
-[Live Website Demo (Netlify)](https://agility-next-starter-ssg.netlify.com/)
+[Live Website Demo (Zeit)](https://agility-next-starter-ssg.netlify.com/)
 
 [New to Agility CMS? Signup for a free account](https://agilitycms.com/free)
 
@@ -44,10 +43,9 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 4. Modify the `agility.config.js` and place your own *guid* and *apiKeys* (if you want to test this with your own instance - must be using the Blog Template) - you can also run it with the sandbox credentials provided
 
 # Deploy
-1. Run `npm run build`
-2. Run `npm run export` to export the site as an SSG
-3. Prior to deploying this to webhost, you can run it locally using `serve -p 8000` to verify the output
-4. Deploy to a static hosting service such as Netlify or Zeit
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/agility/agilitycms-next-starter-ssgr)
+
+☝️ Deploy this starter repo in just minutes with [Zeit](https://zeit.co/). It will prompt you to enter your `AGILITY_GUID`, , `AGILITY_API_FETCH_KEY`, `AGILITY_API_PREVIEW_KEY`, and `AGILITY_SECURITY_KEY`.
 
 # Notes
 ## How to Properly Link to a Page
@@ -61,8 +59,9 @@ import Link from 'next/link';
 ```
 
 ## How to Preview Content?
-TODO: Document the new way to do this.
 Since this is a static app, how can editors preview content in realtime as they are making them in the CMS? Zeit Now apparantly will support a great way to do this, but until then, you can run this in development mode (`npm run dev`) in a container on a web server. This ensures that the requests for each page are done at runtime.
+
+> Native support for Preview with NextJS/Zeit is now enabled, documentation coming soon.
 
 This repo is set up work with Azure Dev Ops (_azure-pipelines.yml_) and Docker (_DockerFile). This allows you to use Docker to build an image, and then push it to the Azure Container Registry of your choice. An Azure App Service that you setup would simply use the Registry to enable Continuous Deployment.
 
