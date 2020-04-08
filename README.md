@@ -45,7 +45,7 @@ Sign up for an [Agility CMS Blog Starter](https://account.agilitycms.com/sign-up
 4. Modify the `agility.config.js` and place your own *guid* and *apiKeys* (if you want to test this with your own instance - must be using the Blog Template) - you can also run it with the sandbox credentials provided
 
 # Deploy
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/agility/agilitycms-next-starter-ssgr)
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/agility/agilitycms-next-starter-ssg)
 
 ☝️ Deploy this starter repo in just minutes with [Zeit](https://zeit.co/). It will prompt you to enter your `AGILITY_GUID`, , `AGILITY_API_FETCH_KEY`, `AGILITY_API_PREVIEW_KEY`, and `AGILITY_SECURITY_KEY`.
 
