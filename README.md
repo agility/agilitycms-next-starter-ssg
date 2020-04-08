@@ -1,6 +1,8 @@
 # Next.js + Agility CMS + SSG 
 This is sample Next.js starter site that uses Agility CMS and aims to be a foundation for building fully static sites using Next.js and Agility CMS.
 
+| NextJS Preview is now supported! Docs coming soon...
+
 [Live Website Demo (Zeit)](https://agility-next-starter-ssg.netlify.com/)
 
 [New to Agility CMS? Signup for a free account](https://agilitycms.com/free)
