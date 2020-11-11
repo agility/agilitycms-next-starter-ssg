@@ -1,6 +1,6 @@
 {
   "name": "agility-next-starter-ssg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -9,7 +9,7 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
-    "@agility/content-fetch": "^0.7.1",
+    "@agility/content-fetch": "^1.0.0",
     "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.4",
