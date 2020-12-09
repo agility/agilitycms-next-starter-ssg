@@ -1,4 +1,4 @@
-> `Deprecation Notice`=> This example uses the Agility Fetch API which requests data on-demand in real-time. We now recommend using the Sync API which is documented in our (new Next.js)[https://github.com/agility/agilitycms-nextjs-starter-2020]  starter.
+> `Deprecation Notice`=> This example uses the Agility Fetch API which requests data on-demand in real-time. We now recommend using the Sync API which is documented in our [new Next.js starter](https://github.com/agility/agilitycms-nextjs-starter-2020).
 
 # Next.js + Agility CMS + SSG 
 This is sample Next.js starter site that uses Agility CMS and aims to be a foundation for building fully static sites using Next.js and Agility CMS.
